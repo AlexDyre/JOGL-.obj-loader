@@ -139,11 +139,11 @@ public class ObjLoader {
 		return face;
 	}
 
-	private static Vertex3 parseVertex(String[] tokens) {
-		Vertex3 vert = null;
+	private static Vector3 parseVertex(String[] tokens) {
+		Vector3 vert = null;
 		
 		if (tokens.length == 4) {
-			vert = new Vertex3();
+			vert = new Vector3();
 			vert.x = Double.parseDouble(tokens[1]);
 			vert.y = Double.parseDouble(tokens[2]);
 			vert.z = Double.parseDouble(tokens[3]);
@@ -152,11 +152,11 @@ public class ObjLoader {
 		return vert;
 	}
 	
-	private static Vertex3 parseNormal(String[] tokens) {
-		Vertex3 normal = null;
+	private static Vector3 parseNormal(String[] tokens) {
+		Vector3 normal = null;
 		
 		if (tokens.length == 4) {
-			normal = new Vertex3();
+			normal = new Vector3();
 			normal.x = Double.parseDouble(tokens[1]);
 			normal.y = Double.parseDouble(tokens[2]);
 			normal.z = Double.parseDouble(tokens[3]);

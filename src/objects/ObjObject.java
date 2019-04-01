@@ -6,14 +6,14 @@ import com.jogamp.opengl.GL2;
 import util.ColorRGB;
 import util.MtlLibrary;
 import util.ObjLoader;
-import util.Vertex3;
+import util.Vector3;
 
 public class ObjObject {
 	private String filename;
-	public ArrayList<Vertex3> vertices, normals;
+	public ArrayList<Vector3> vertices, normals;
 	public ArrayList<TriangleFace> tris;
 	public MtlLibrary mtlLibrary;
-	public Vertex3 pos;
+	public Vector3 pos;
 	
 	private int triDisplayList, base;
 	
@@ -22,9 +22,9 @@ public class ObjObject {
 	 */
 	public ObjObject() {
 		this.filename = "";
-		this.vertices = new ArrayList<Vertex3>();
+		this.vertices = new ArrayList<Vector3>();
 		this.tris = new ArrayList<TriangleFace>();
-		this.pos = new Vertex3();
+		this.pos = new Vector3();
 	}
 	
 	/**
@@ -34,16 +34,21 @@ public class ObjObject {
 	 */
 	public ObjObject(String path, GL2 gl) {
 		this.filename = path;
-		this.vertices = new ArrayList<Vertex3>();
-		this.normals = new ArrayList<Vertex3>();
+		this.vertices = new ArrayList<Vector3>();
+		this.normals = new ArrayList<Vector3>();
 ;		this.tris = new ArrayList<TriangleFace>();
-		this.pos = new Vertex3();
+		this.pos = new Vector3();
 		
 		ObjLoader.importModel(path, this);
 		this.base = gl.glGenLists(1);
 		compileTriList(gl, base);
 	}
 	
+	/**
+	 * Compiles the 
+	 * @param gl
+	 * @param index
+	 */
 	private void compileTriList(GL2 gl, int index) {
 		triDisplayList = index;
 		

@@ -2,10 +2,10 @@ package objects;
 
 import util.ColorRGB;
 import util.ObjMtl;
-import util.Vertex3;
+import util.Vector3;
 
 public class TriangleFace {
-	public Vertex3 v1, v2, v3, normal;
+	public Vector3 v1, v2, v3, normal;
 	public int[] vertexPos;
 	public ColorRGB color;
 	public ObjMtl material;

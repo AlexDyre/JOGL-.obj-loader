@@ -24,7 +24,8 @@ public class Renderer implements GLEventListener, KeyListener {
 	public static int windowWidth = 1024;
 
 	//track-ball camera
-	private static TrackballCamera camera;
+	//private static TrackballCamera camera;
+	private static CameraController camera;
 	
 	private GLUT glut;
 	
@@ -164,7 +165,8 @@ public class Renderer implements GLEventListener, KeyListener {
 	    //<other init code here>
 		
 		// intialise the camera
-		Renderer.camera = new TrackballCamera(canvas);
+		//Renderer.camera = new TrackballCamera(canvas);
+		Renderer.camera = new CameraController(canvas);
 		System.out.println("Camera set up");
 		
 		
