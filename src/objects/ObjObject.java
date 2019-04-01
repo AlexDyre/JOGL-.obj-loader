@@ -1,15 +1,11 @@
 package objects;
 
 import java.util.ArrayList;
-
-import org.w3c.dom.css.RGBColor;
-
 import com.jogamp.opengl.GL2;
 
 import util.ColorRGB;
 import util.MtlLibrary;
 import util.ObjLoader;
-import util.ObjMtl;
 import util.Vertex3;
 
 public class ObjObject {
@@ -60,7 +56,7 @@ public class ObjObject {
 					gl.glColor4d(color.red, color.green, color.blue, face.material.transparency);
 				}
 				gl.glBegin(GL2.GL_POLYGON);
-					//need to set normal for each face first
+					//need to set normal for the face first
 					gl.glNormal3d(face.normal.x, face.normal.y, face.normal.y);
 					gl.glVertex3d(face.v1.x, face.v1.y, face.v1.z);
 					gl.glVertex3d(face.v2.x, face.v2.y, face.v2.z);
