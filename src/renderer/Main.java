@@ -27,16 +27,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		
-		System.out.println("Creating obj from file");
-		
-		/*
-		 * ObjObject cube = new ObjObject("cube.obj");
-		 * 
-		 * System.out.println(cube);
-		 */
-		
 		boolean run3D = true;
+	
 		
 		if (run3D) {
 			System.out.println("Initialising Project");

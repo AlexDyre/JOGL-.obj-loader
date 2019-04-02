@@ -41,7 +41,7 @@ public class Renderer implements GLEventListener, KeyListener {
 	public float moveAmount = 0.0f;
 	
 	public Renderer(GLCanvas canvas) {
-		super();
+		//super();
 		System.out.println("Render init");
 		Renderer.canvas = canvas;
 		this.wireFrame = false;
