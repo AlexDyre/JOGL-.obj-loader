@@ -88,7 +88,7 @@ public class ObjMtlLoader {
 		MtlLibrary library = new MtlLibrary(path);
 		
 		try {
-			fs = new FileInputStream(path);
+			fs = new FileInputStream("resources/" + path);
 			in = new DataInputStream(fs);
 			br = new BufferedReader(new InputStreamReader(in));
 			String line;
@@ -135,8 +135,7 @@ public class ObjMtlLoader {
 				}
 			}
 		}
-		// for debug purposes, prints the object
-		//System.out.println(object);
+
 		return library;
 	}
 }

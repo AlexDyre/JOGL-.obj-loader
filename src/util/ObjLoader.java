@@ -29,7 +29,7 @@ public class ObjLoader {
 		BufferedReader br = null;
 		
 		try {
-			fs = new FileInputStream(path);
+			fs = new FileInputStream("resources/" + path);
 			in = new DataInputStream(fs);
 			br = new BufferedReader(new InputStreamReader(in));
 			String line;
@@ -93,11 +93,6 @@ public class ObjLoader {
 		// for debug purposes, prints the object
 		System.out.println(object);
 		return object;
-	}
-	
-	private static ObjMtl parseMtl(String[] tokens) {
-		
-		return null;
 	}
 	
 	private static TriangleFace parseFace(String[] tokens, ObjObject object, boolean useMtl, String mtl) {

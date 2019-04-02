@@ -10,6 +10,7 @@ import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.gl2.GLUT;
 
+import objects.Biplane;
 import objects.ObjObject;
 import objects.SR71;
 
@@ -31,6 +32,7 @@ public class Renderer implements GLEventListener, KeyListener {
 	
 	private ObjObject cube, sr71Scene, colorCube;
 	private SR71 plane;
+	private Biplane biplane;
 	//private WireframeButton wireframeButton;
 	
 	public boolean wireFrame;
@@ -75,6 +77,7 @@ public class Renderer implements GLEventListener, KeyListener {
 		
 		// animation
 		plane.animate();
+		biplane.animate();
 		
 		
 		// enable z-testing
@@ -102,6 +105,7 @@ public class Renderer implements GLEventListener, KeyListener {
 		
 		sr71Scene.draw(gl);
 		plane.draw(gl);
+		biplane.draw(gl);
 		// Should object specific draw methods handle pushing and pop-ing from the matrix stack
 		/*
 		 * gl.glPushMatrix();
@@ -178,6 +182,7 @@ public class Renderer implements GLEventListener, KeyListener {
 		sr71Scene = new ObjObject("SR-71Scene.obj" ,gl);
 		//wireframeButton = new WireframeButton(new float[] {1.0f, 1.0f, 1.0f, 1.0f}, new float[] {0.33f, 0.33f, 0.33f, 1.0f}, new Vertex2d(-0.95, 0.875), 0.1f, 0.3f, gl, "Wireframe On/Off", this, canvas);
 		colorCube = new ObjObject("ColorCube.obj", gl);
+		biplane = new Biplane("biplane.obj", gl);
 
 	}
 

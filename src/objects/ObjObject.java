@@ -53,21 +53,45 @@ public class ObjObject {
 		triDisplayList = index;
 		
 		gl.glNewList(triDisplayList, GL2.GL_COMPILE);
-			gl.glColor4d(0.2, 0.2, 0.2, 1.0);
+			
+		gl.glColor4d(0.2, 0.2, 0.2, 1.0);
+			if (filename.equalsIgnoreCase("biplane.obj")) {
+				gl.glScaled(0.01, 0.01, 0.01);
+			}
+			
 			ColorRGB color;
 			for (TriangleFace face : tris) {
-				if (face.useMtl) {
+				if (face.useMtl && face.material.transparency >= 1.0) {
 					color = face.material.diffuse;
 					gl.glColor4d(color.red, color.green, color.blue, face.material.transparency);
+					
+					gl.glBegin(GL2.GL_POLYGON);
+						//need to set normal for the face first
+						gl.glNormal3d(face.normal.x, face.normal.y, face.normal.y);
+						gl.glVertex3d(face.v1.x, face.v1.y, face.v1.z);
+						gl.glVertex3d(face.v2.x, face.v2.y, face.v2.z);
+						gl.glVertex3d(face.v3.x, face.v3.y, face.v3.z);
+					gl.glEnd();
 				}
-				gl.glBegin(GL2.GL_POLYGON);
-					//need to set normal for the face first
-					gl.glNormal3d(face.normal.x, face.normal.y, face.normal.y);
-					gl.glVertex3d(face.v1.x, face.v1.y, face.v1.z);
-					gl.glVertex3d(face.v2.x, face.v2.y, face.v2.z);
-					gl.glVertex3d(face.v3.x, face.v3.y, face.v3.z);
-				gl.glEnd();
+				
 			}
+			
+			for (TriangleFace face : tris) {
+				if (face.useMtl && face.material.transparency < 1.0) {
+					color = face.material.diffuse;
+					gl.glColor4d(color.red, color.green, color.blue, face.material.transparency);
+					
+					gl.glBegin(GL2.GL_POLYGON);
+						//need to set normal for the face first
+						gl.glNormal3d(face.normal.x, face.normal.y, face.normal.y);
+						gl.glVertex3d(face.v1.x, face.v1.y, face.v1.z);
+						gl.glVertex3d(face.v2.x, face.v2.y, face.v2.z);
+						gl.glVertex3d(face.v3.x, face.v3.y, face.v3.z);
+					gl.glEnd();
+				}
+				
+			}
+			gl.glScaled(1, 1, 1);
 		gl.glEndList();
 	}
 	
