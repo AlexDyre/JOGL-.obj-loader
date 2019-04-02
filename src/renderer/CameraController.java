@@ -1,9 +1,11 @@
 package renderer;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.awt.GLCanvas;
@@ -11,18 +13,22 @@ import com.jogamp.opengl.glu.GLU;
 
 import util.Vector3;
 
-public class CameraController implements MouseListener, KeyListener {
+public class CameraController implements MouseListener, MouseMotionListener, KeyListener {
 	
 	private Vector3 rotation, translatePosition;
 	private Vector3 pos;
 	private Vector3 target;
 	private Vector3 forward, side;
+	private int mouseButton;
+	private Point oldMousePos;
+	
 	private GLU glu;
 	
 	public double FOV, windowWidth, windowHeight, distanceToOrigin;
 	
 	public CameraController(GLCanvas canvas) {
 		canvas.addMouseListener(this);
+		//canvas.addMouseMotionListener(this);
 		canvas.addKeyListener(this);
 		this.glu = new GLU();
 		this.FOV = 45;
@@ -152,9 +158,35 @@ public class CameraController implements MouseListener, KeyListener {
 	public void mouseExited(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+		oldMousePos = e.getPoint();
+		mouseButton = e.getButton();
+	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+		oldMousePos = null;
+		mouseButton = -0;
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		Point p = e.getPoint();
+		if (oldMousePos != null) {
+			if (mouseButton == MouseEvent.BUTTON1) {
+				rotation.x -= (p.x - oldMousePos.x) / 100;
+				rotation.y += (p.y - oldMousePos.y) / 100;
+				rotation.y = Math.min(89.9, Math.max(-89, rotation.y));
+			} else if (mouseButton == MouseEvent.BUTTON3) {
+				distanceToOrigin += 0.1 * (p.y - oldMousePos.y);
+			}
+		}
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
